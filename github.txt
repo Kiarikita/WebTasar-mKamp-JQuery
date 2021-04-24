@@ -1,0 +1,8 @@
+git init 
+git add .
+git commit -m "JQuery Giriş"
+git remote add origin https://github.com/Kiarikita/WebTasar-mKamp-JQuery.git
+git push -u origin master
+
+#sonraki nyaptığımız değişiklikler için
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Selectors</title>
+</head>
+<body>
+    <!--https://oscarotero.com/jquery/ -->
+    <ul>
+        <!-- lilerin hepsi kardeş çünkü aynı ulun içindeler-->
+        <li title="iki açıklama">Lorem ipsum dolor sit.</li>
+        <li>Expedita incidunt illo nam.</li>
+        <li class="kirmizi">Eos odit pariatur magnam.</li>
+        <li>Vel nemo placeat iste.</li>
+        <li id="oge5">Sed numquam sit repellat.</li>
+        <li>Voluptate nihil aperiam id.</li>
+        <li class="kirmizi">Voluptatibus vitae obcaecati perferendis.</li>
+        <li>Neque quam veritatis ipsum.</li>
+        <li title="bir açıklama">Modi corrupti quod quo.</li>
+        <li>Inventore perspiciatis eos sed!</li>
+    </ul>
+
+    <p title="bir açıklama">
+        Lorem ipsum <span class="kirmizi">dolor</span>.
+    </p>
+    <p>
+        <span style="display:none">Bir numaralı</span>
+        Arama motoru: <a href="https://www.google.com"> Google</a>
+    </p>
+
+    <div style="display:none">
+        Bu element gizlidir.
+    </div>
+    <form>
+        <label for="ad">Ad:</label>
+        <input type="text" name="ad" id="ad"> <br/>
+        <label for="soyad">Soyad:</label>
+        <input type="text" name="soyad" id="soyad"> <br/>
+        <label for="sehir">şehir:</label>
+        <select name="sehir" id="sehir">
+            <option value="6">Ankara</option>
+            <option value="34">İstanbul</option>
+            <option value="35">İzmir</option>
+        </select>
+        <input type="button" value="Gonder">
+    </form>
+    <button onclick="goster()">Tüm gizlileri göster.</button>
+
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+            //her şeyi çoklu stil
+            //$("*").css({
+              //  "border": "3px solid black",
+                //"margin": "6px"
+            //});
+
+            //element ismi ile seçim; tüm li leri seç, hepsinin sonuna gülücük koyalım
+            $("li").append(" :)");
+            $("ul").css("list-style", "none");
+
+            //class ile seçim; classı kırmızı olanlar
+            $(".kirmizi").css("color","red");
+            
+            //id ile seçim
+            $("#oge5").css("text-decoration", "underline");
+            
+            //attribute ile seçim; title attribute
+            $('[title="bir açıklama"]').css("background-color", "yellow");
+
+            //çoklu seçim: oge5 idli kirmzi classların başına + koy
+            $("#oge5, .kirmizi").prepend("+ ");
+
+            //css hiyerarşi; paragraf içirisinde kırmızı classa sahip olanlar
+            $("p > .kirmizi").css("background-color", "gray");
+
+            //siblings; #oge5 kardeşleri
+            $("#oge5  + *").css("border-left", "10px solid red");
+            
+            //content filter örnekleri
+            //içinde dolor kelimesi geçen llilerin sonuna D koysun
+            $("li:contains('ipsum')").append("D");
+
+            //içinde link içeren paragrafları seç
+            $("p:has(a)").append(" [link]");
+
+            //gizlileri göster (display none)
+            function goster(){
+                //visibility filter
+                $(":hidden").show();
+            }
+
+            // metin kutularının sağına yıldız * karakteri koy
+            $("input[type='text']").after(" *");
+
+            //append bir elementin içinin sonuna ekler
+            //after doğrudan sonuna ekler
+
+            //name attribute u d harfi ile bitenleri arka planını pembe yap
+            $("input[name$='d']").css("background-color", "pink");
+            
+            //form elemanlarının seçimi
+            $("input:button").val("Kaydet");
+
+            //child filters
+            //ul un içindeki li lerin tek sırada olanların sonuna TEK
+            //ul un içindeki li lerin çift sırada olanların sonuna ÇİFT yaz
+            $("ul > li:nth-child(odd)").append(" [Tek]");
+            $("ul > li:nth-child(even)").append(" [Çift]");
+
+            //ul un içindeki 4. li nin metnini GAZİ DSC yap
+            $("ul>li:nth-child(4)")
+                .text("GAZİ DSC")
+                .css("text-align", "center")
+                .css("border", "3px dashed blue")
+                .css("padding", "1rem");
+            
+                // not:jquery ile seçim yapıldıktan sonrauygulanan metodlara
+
+            
+    </script>
+</body>
+</html>
